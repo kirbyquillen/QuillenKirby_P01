@@ -16,10 +16,15 @@ public class Projectile : MonoBehaviour
         _rb.velocity = direction * speed;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        Enemy enemy = other.GetComponent<Enemy>();
-        enemy.Die();
-        Destroy(this);
+        Player player = other.gameObject.GetComponent<Player>();
+        IDamageable ouch = other.gameObject.GetComponent<IDamageable>();
+
+        if (player == null && ouch != null)
+        {
+            ouch.TakeDamage(1);
+            Destroy(gameObject);
+        }
     }
 }

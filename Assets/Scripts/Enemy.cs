@@ -20,34 +20,18 @@ public class Enemy : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         Player player = other.gameObject.GetComponent<Player>();
-        if(player != null)
+        Health health = this.gameObject.GetComponent<Health>();
+
+        if (player != null)
         {
             PlayerImpact(player);
-            ImpactFeedback();
+            health.TakeDamage(1);
         }
     }
 
     public void PlayerImpact(Player player)
     {
-        player.DecreaseHealth(_damageAmount);
-    }
-
-    private void ImpactFeedback()
-    {
-        if(_impactParticles != null)
-        {
-            _impactParticles = Instantiate(_impactParticles, transform.position, Quaternion.identity);
-        }
-        if(_impactSound != null)
-        {
-            AudioHelper.Play2DClip(_impactSound, 1f);
-        }
-    }
-
-    public void Die()
-    {
-        _impactParticles.Play();
-        AudioHelper.Play2DClip(_impactSound, 1f);
-        Destroy(this);
+        Health health = player.GetComponent<Health>();
+        health.TakeDamage(1);
     }
 }

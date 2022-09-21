@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(TankController))]
+
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    TankController _tankController;
+
+    private void Awake()
     {
-        
+        {
+            _tankController = GetComponent<TankController>();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+
+    }
+
+    public void Kill()
+    {
+        gameObject.SetActive(false);
     }
 }

@@ -322,7 +322,7 @@
 -r:"C:/Program Files/Unity 2021.3.3f1/Editor/Data/NetStandard/ref/2.1.0/netstandard.dll"
 -r:"C:/Program Files/Unity 2021.3.3f1/Editor/Data/PlaybackEngines/AndroidPlayer/Unity.Android.Gradle.dll"
 -r:"C:/Program Files/Unity 2021.3.3f1/Editor/Data/PlaybackEngines/AndroidPlayer/Unity.Android.Types.dll"
--r:"C:/Users/Admin/OneDrive/Documents/projects/QuillenKirby_P01/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.0.2/Runtime/Newtonsoft.Json.dll"
+-r:"C:/Users/Admin/Documents/QuillenKirby_P01/Library/PackageCache/com.unity.nuget.newtonsoft-json@3.0.2/Runtime/Newtonsoft.Json.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.PlasticSCM.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Rider.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Services.Core.Analytics.ref.dll"
@@ -336,7 +336,14 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
+"Assets/Scripts/AudioHelper.cs"
+"Assets/Scripts/Enemy.cs"
+"Assets/Scripts/GameController.cs"
+"Assets/Scripts/Health.cs"
+"Assets/Scripts/IDamageable.cs"
 "Assets/Scripts/Player.cs"
+"Assets/Scripts/Projectile.cs"
+"Assets/Scripts/ProjectileShooter.cs"
 "Assets/Scripts/TankController.cs"
 -langversion:9.0
 

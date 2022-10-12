@@ -341,6 +341,7 @@
 "Assets/Scripts/AudioHelper.cs"
 "Assets/Scripts/Enemy.cs"
 "Assets/Scripts/EnemyAI.cs"
+"Assets/Scripts/EnemyProjectile.cs"
 "Assets/Scripts/GameController.cs"
 "Assets/Scripts/Health.cs"
 "Assets/Scripts/IDamageable.cs"

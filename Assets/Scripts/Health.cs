@@ -1,14 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Health : MonoBehaviour, IDamageable
 {
-    [SerializeField] int _health;
+    [SerializeField] public int _health;
     [SerializeField] ParticleSystem _impactParticles;
     [SerializeField] AudioClip _impactSound;
     [SerializeField] AudioClip _killSound;
 
+    public Slider slider;
+    public GameObject panel;
+
+    Rigidbody _rb;
+
+    private void Awake()
+    {
+        panel.SetActive(false);
+        _rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        slider.value = _health;
+    }
     public void TakeDamage(int amt)
     {
         _health -= amt;
@@ -21,8 +38,11 @@ public class Health : MonoBehaviour, IDamageable
         {
             AudioHelper.Play2DClip(_impactSound, 1f);
         }
+        if (panel != null)
+        {
 
-        if (_health <= 0)
+        }
+        if (_health < 0)
         {
             Kill();
         }

@@ -15,12 +15,15 @@ public class EnemyAI : MonoBehaviour
     bool walkPointSet;
     public float walkPointRange;
 
-    public float timeBetweenAttacks;
+    public float timeBetweenAttacks, timeBetweenSuperAttacks;
     bool alreadyAttacked;
     public GameObject projectile;
+    public GameObject superprojectile;
 
-    public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public float sightRange, attackRange, superattackRange;
+    public bool playerInSightRange, playerInAttackRange, playerInSuperAttackRange;
+
+    public AudioSource sfx_charge, sfx_shoot;
 
     private void Awake()
     {
@@ -32,10 +35,12 @@ public class EnemyAI : MonoBehaviour
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        playerInSuperAttackRange = Physics.CheckSphere(transform.position, superattackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Patrolling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        if (!playerInSightRange && !playerInAttackRange && !playerInSuperAttackRange) Patrolling();
+        if (playerInSightRange && !playerInAttackRange && !playerInSuperAttackRange) ChasePlayer();
+        if (playerInSightRange && !playerInAttackRange && playerInSuperAttackRange) SuperAttackPlayer();
+        if (playerInAttackRange && playerInSightRange && playerInSuperAttackRange) AttackPlayer();
     }
 
     private void Patrolling()
@@ -70,6 +75,8 @@ public class EnemyAI : MonoBehaviour
     }
     private void AttackPlayer()
     {
+        sfx_shoot.Play();
+
         agent.SetDestination(transform.position);
 
         transform.LookAt(player);
@@ -82,6 +89,26 @@ public class EnemyAI : MonoBehaviour
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
+
+    private void SuperAttackPlayer()
+    {
+        agent.SetDestination(transform.position);
+
+        transform.LookAt(player);
+
+        if (!alreadyAttacked)
+        {
+            sfx_charge.Play();
+            sfx_shoot.Play();
+
+            Rigidbody rb = Instantiate(superprojectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), 5);
         }
     }
 

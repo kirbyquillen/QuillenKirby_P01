@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 
@@ -12,6 +13,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] AudioClip _impactSound;
 
     Rigidbody _rb;
+
+    Health _health;
 
     private void Awake()
     {
